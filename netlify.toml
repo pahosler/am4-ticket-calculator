@@ -1,0 +1,5 @@
+[build]
+
+  command = "netlify-lambda build functions/lambda && yarn run export"
+  functions = "lambda"
+  Publish = "__sapper__/build"
