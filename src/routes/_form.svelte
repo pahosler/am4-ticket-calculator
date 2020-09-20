@@ -5,7 +5,7 @@
   let promise = Promise.resolve();
   const calculate = async () => {
     const res = await fetch(
-      `/.netlify/functions/tickets?type=${tix}&distance=${km}`
+      `https://am4ticketcalc.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`
     );
     let response = res.json
     if (res.ok) {
