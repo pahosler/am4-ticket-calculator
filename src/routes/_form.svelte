@@ -1,17 +1,18 @@
 <script>
+  import axios from 'axios';
   let tix = "pax";
   let real = "realism";
   let km = 100;
   let promise = Promise.resolve();
   const calculate = async () => {
-    const res = await fetch(
-      `https://am4ticketcalc.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`
-    );
-    let response = res.json
-    if (res.ok) {
-      return await res.json();
-    } else {
-      throw new Error(`ERROR ERROR ERROR!!! ${res}`);
+    try {
+      const res = await axios.get(
+        `https://am4ticketcalc.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`
+      );
+      return res.json
+    }
+    catch (error) {
+      console.error(error)
     }
   };
 
