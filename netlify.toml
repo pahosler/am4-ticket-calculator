@@ -2,4 +2,4 @@
 
   command = "netlify-lambda build functions/lambda && yarn run export"
   functions = "lambda"
-  publish = "__sapper__/build"
+  publish = "__sapper__/export"
