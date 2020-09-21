@@ -7,7 +7,7 @@
   const calculate = async () => {
     try {
       const res = await fetch(
-        `https://xenodochial-montalcini-77aed0.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`,
+        `/.netlify/functions/tickets?type=${tix}&distance=${km}`,
         {
           method: "GET"
         }

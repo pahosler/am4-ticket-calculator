@@ -15,6 +15,9 @@ exports.handler = async (event, context, callback) => {
   let data = await getPrice(type, distance);
   callback(null, {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     body: JSON.stringify(data),
   }).catch((error) => {
     callback(newError(`Something went wrong: ${e}`), { statusCode: 400 });
