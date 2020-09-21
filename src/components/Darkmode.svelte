@@ -1,4 +1,5 @@
 <script>
+  let darkmode
   function dark() {
     window.document.body.classList.toggle('dark-mode');
   }
@@ -8,7 +9,7 @@
   .placement {
     position: absolute;
     top: 15px;
-    right: 60px;
+    right: 10px;
   }
 
   .switch {
@@ -46,7 +47,7 @@
   }
 
   input:checked+.slider {
-    background-color: #141815;
+    background-color: #323b34;
   }
 
   input:checked+.slider:before {
@@ -62,5 +63,9 @@
   }
 </style>
 <div class="placement">
-  <button class="" on:click={dark}>dark</button>
+  <label class="switch" for="checkbox">
+    <input id="checkbox" type="checkbox" bind:checked={darkmode} on:change={dark} />
+    <div class="slider round"></div>
+  </label>
+  <!-- <button class="" on:click={dark}>dark</button> -->
 </div>
