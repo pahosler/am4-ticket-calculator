@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "am4-tools-calculator",
+  "description": "using the AM4 Tools API to calculate tix prices",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",

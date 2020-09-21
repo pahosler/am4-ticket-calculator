@@ -6,10 +6,11 @@
   let promise = Promise.resolve();
   const calculate = async () => {
     try {
-      const res = await axios.get(
-        `https://am4ticketcalc.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`
-      );
-      return res.json
+      const res = await fetch(
+        `https://xenodochial-montalcini-77aed0.netlify.app/.netlify/functions/tickets?type=${tix}&distance=${km}`, {
+        method: "GET",
+      });
+      return await res.json
     }
     catch (error) {
       console.error(error)
@@ -29,6 +30,10 @@
     align-items: center;
     margin-bottom: 1rem;
     text-align: left;
+  }
+
+  .calculate {
+    font-size: 1.5em;
   }
 </style>
 
@@ -62,13 +67,13 @@
 </label>
 
 
-<button on:click={handleClick} disabled={km < 100}>CALCULATE</button>
+<button on:click={handleClick} disabled={km < 100}>CALCULATE <span class="calculate">✈</span></button>
 
 {#await promise}
   <p>Calculating...</p>
 {:then data}
-{#if data===undefined}
-  <p>waiting for input...</p>
+{#if !data}
+  <p>😎</p>
 {:else}
   <div class="real">
     {#if tix === "pax"}

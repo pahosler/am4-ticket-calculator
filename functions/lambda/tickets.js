@@ -6,25 +6,17 @@ const getPrice = async (type, distance) => {
       `https://am4tools.com/api/route/${type}/ticket?type=normal&flightRange=${distance}`
     );
     let { data } = response;
-    console.log(data);
     return data;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
   let { type, distance } = event.queryStringParameters;
-  getPrice(type, distance).then((res) => {
-    callback(null, {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-      },
-      body: JSON.stringify(res),
-    }).catch((e) => {
-      callback(e);
-    });
+  let data = await getPrice(type, distance);
+  callback(null, {
+    statusCode: 200,
+    body: JSON.stringify(data),
+  }).catch((error) => {
+    callback(newError(`Something went wrong: ${e}`), { statusCode: 400 });
   });
 };
